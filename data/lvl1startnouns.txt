@@ -1,0 +1,8 @@
+Masc,Femin,Plural,othergender,firstlink,secondlink
+Frau,Frau,Frauen,feminine,person,person
+Hunde,Hundin,Hunde,null,person,person
+Kaffee,Kaffee,Kaffee,masculine,drink
+Kater,Katze,Katzen,null,person,person
+Mann,Mann,Manner,masculine,person,person
+Student,Studentin,Studenten,null,person,person
+Wasser,Wasser,Wasser,neuter,null,drink

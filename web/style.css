@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f3ed;
+  color: #241f1c;
+}
+
+.app {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.sentence {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #241f1c;
+  color: white;
+}

@@ -1,0 +1,4 @@
+singular,plural,tags
+heisz,heisz,food|drink
+kalt,kalt,food|drink
+mude,muden,person
