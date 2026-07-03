@@ -1,17 +1,17 @@
 #include "SatzmaschineEngine.h"
-#include "Utility.h"
-#include "Sentence.h"
+#include "parsing/Utility.h"
+#include "generation/Sentence.h"
 
 SatzmaschineEngine::SatzmaschineEngine()
 {
-    pronouns = parsePronouns("pronouns.txt");
-    verbs = parseVerbs("lvl1verbs.txt");
-    nouns = parseNouns("lvl1nouns.txt");
-    personNouns = parsePersonNouns("lvl1personnouns.txt");
-    adjectives = parseAdjectives("lvl1adjectives.txt");
-    adverbs = parseAdverbs("lvl1adverbs.txt");
-    startNouns = parseStartNouns("lvl1startnouns.txt");
-    nounStartingVerbs = parseNounStartingVerbs("lvl1nounstartingverbs.txt");
+    pronouns = parsePronouns("data/pronouns.txt");
+    verbs = parseVerbs("data/lvl1verbs.txt");
+    nouns = parseNouns("data/lvl1nouns.txt");
+    personNouns = parsePersonNouns("data/lvl1personnouns.txt");
+    adjectives = parseAdjectives("data/lvl1adjectives.txt");
+    adverbs = parseAdverbs("data/lvl1adverbs.txt");
+    startNouns = parseStartNouns("data/lvl1startnouns.txt");
+    nounStartingVerbs = parseNounStartingVerbs("data/lvl1nounstartingverbs.txt");
 }
 
 bool SatzmaschineEngine::loadedSuccessfully() const

@@ -1,13 +1,13 @@
 #pragma once
-#include "Pronoun.h"
-#include "Noun.h"
-#include "Verb.h"
-#include "PersonNoun.h"
-#include "Utility.h"
-#include "Adjective.h"
-#include "Adverb.h"
-#include "NounStartingVerb.h"
-#include "StartNoun.h"
+#include "../words/Pronoun.h"
+#include "../words/Noun.h"
+#include "../words/Verb.h"
+#include "../words/PersonNoun.h"
+#include "../parsing/Utility.h"
+#include "../words/Adjective.h"
+#include "../words/Adverb.h"
+#include "../words/NounStartingVerb.h"
+#include "../words/StartNoun.h"
 #include <random>
 using namespace std;
 

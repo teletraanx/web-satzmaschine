@@ -1,3 +1,5 @@
+// in project dir: build.bat
+// in web dir, start server: python -m http.server 8000
 #include <iostream>
 #include <string>
 

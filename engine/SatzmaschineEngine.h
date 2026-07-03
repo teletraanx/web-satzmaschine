@@ -3,14 +3,14 @@
 #include <string>
 #include <vector>
 
-#include "Pronoun.h"
-#include "Verb.h"
-#include "Noun.h"
-#include "PersonNoun.h"
-#include "Adjective.h"
-#include "Adverb.h"
-#include "StartNoun.h"
-#include "NounStartingVerb.h"
+#include "words/Pronoun.h"
+#include "words/Verb.h"
+#include "words/Noun.h"
+#include "words/PersonNoun.h"
+#include "words/Adjective.h"
+#include "words/Adverb.h"
+#include "words/StartNoun.h"
+#include "words/NounStartingVerb.h"
 using namespace std;
 
 class SatzmaschineEngine {

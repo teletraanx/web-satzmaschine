@@ -1,7 +1,7 @@
 #include <emscripten/bind.h>
 #include <string>
 
-#include "SatzmaschineEngine.h"
+#include "engine/SatzmaschineEngine.h"
 
 SatzmaschineEngine engine;
 
