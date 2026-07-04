@@ -82,7 +82,7 @@ var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIR
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\abiga\AppData\Local\Temp\tmpfhoax_08.js
+// include: C:\Users\abiga\AppData\Local\Temp\tmpxrkridc1.js
 
   if (!Module['expectedDataFileDownloads']) Module['expectedDataFileDownloads'] = 0;
   Module['expectedDataFileDownloads']++;
@@ -206,25 +206,25 @@ Module['FS_createPath']("/", "data", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/data/lvl1adjectives.txt", "start": 0, "end": 85}, {"filename": "/data/lvl1adverbs.txt", "start": 85, "end": 119}, {"filename": "/data/lvl1nouns.txt", "start": 119, "end": 195}, {"filename": "/data/lvl1nounstartingverbs.txt", "start": 195, "end": 430}, {"filename": "/data/lvl1personnouns.txt", "start": 430, "end": 497}, {"filename": "/data/lvl1startnouns.txt", "start": 497, "end": 834}, {"filename": "/data/lvl1verbs.txt", "start": 834, "end": 1248}, {"filename": "/data/pronouns.txt", "start": 1248, "end": 1386}], "remote_package_size": 1386});
+    loadPackage({"files": [{"filename": "/data/lvl1adjectives.txt", "start": 0, "end": 87}, {"filename": "/data/lvl1adverbs.txt", "start": 87, "end": 113}, {"filename": "/data/lvl1nouns.txt", "start": 113, "end": 189}, {"filename": "/data/lvl1nounstartingverbs.txt", "start": 189, "end": 426}, {"filename": "/data/lvl1personnouns.txt", "start": 426, "end": 493}, {"filename": "/data/lvl1startnouns.txt", "start": 493, "end": 830}, {"filename": "/data/lvl1verbs.txt", "start": 830, "end": 1244}, {"filename": "/data/pronouns.txt", "start": 1244, "end": 1382}], "remote_package_size": 1382});
 
   })();
 
-// end include: C:\Users\abiga\AppData\Local\Temp\tmpfhoax_08.js
-// include: C:\Users\abiga\AppData\Local\Temp\tmpznv06rpi.js
+// end include: C:\Users\abiga\AppData\Local\Temp\tmpxrkridc1.js
+// include: C:\Users\abiga\AppData\Local\Temp\tmp8oty6zh9.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if ((typeof ENVIRONMENT_IS_WASM_WORKER != 'undefined' && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != 'undefined' && ENVIRONMENT_IS_AUDIO_WORKLET)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\abiga\AppData\Local\Temp\tmpznv06rpi.js
-// include: C:\Users\abiga\AppData\Local\Temp\tmpdy7w1tjc.js
+  // end include: C:\Users\abiga\AppData\Local\Temp\tmp8oty6zh9.js
+// include: C:\Users\abiga\AppData\Local\Temp\tmphym_fj3u.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\abiga\AppData\Local\Temp\tmpdy7w1tjc.js
+  // end include: C:\Users\abiga\AppData\Local\Temp\tmphym_fj3u.js
 
 
 var programArgs = [];

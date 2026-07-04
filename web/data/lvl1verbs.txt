@@ -2,6 +2,6 @@ infinitive,i,you,he/she,we,youall,they
 essen,esse,isst,isst,essen,esst,essen,food|adverb
 gehen,gehe,gehst,geht,gehen,geht,gehen,place|adverb
 haben,habe,hast,hat,haben,habt,haben,drink|food|thing
-hatten gerne,hatte gerne,hattest gerne,hatte gerne,hatten gerne,hatten gerne,hatten gerne,food|drink|thing
+hätten gern,hätte gern,hättest gern,hätte gern,hätten gern,hättet gern,hätten gern,food|drink|thing
 sein,bin,bist,ist,sind,seid,sind,linking
 trinken,trinke,trinkst,trinkt,trinken,trinkt,trinken,drink|adverb

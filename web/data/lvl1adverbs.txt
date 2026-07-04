@@ -1,5 +1,4 @@
 word
 heute
 jetzt
-morgen
 hier

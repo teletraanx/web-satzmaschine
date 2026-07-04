@@ -1,4 +1,4 @@
 singular,plural,tags
-heisz,heisz,food|drink
+heiß,heiß,food|drink
 kalt,kalt,food|drink
-mude,muden,person
+müde,müden,person

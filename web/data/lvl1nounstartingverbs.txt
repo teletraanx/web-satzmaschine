@@ -2,6 +2,6 @@ thirdSingular,thirdPlural,firstlink,secondlink
 ist,sind,linking,null
 geht,gehen,person,adverb
 hat,haben,person,food|drink
-hatte gerne,hatten gerne,person,food|drink
+hätte gern,hätten gern,person,food|drink
 isst,essen,person,food|adverb
 trinkt,trinken,person,drink|adverb
