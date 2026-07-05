@@ -1,50 +1,110 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satzmaschine</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <title>Satzmaschine</title>
+  <link rel="stylesheet" href="style.css">
+  
 </head>
 
 <body>
+  <main class="app">
 
-    <main class="app">
+    <header class="top-header">
+      <h1>Satzmaschine</h1>
+      <p class="subtitle">STATUS: SENTENCE GENERATOR ONLINE</p>
+    </header>
 
-        <div class="boot-status">
-          <span class="prompt">&gt;</span>
-          <span>SATZMASCHINE_OS boot sequence complete</span>
-        </div>
+    <section class="dashboard">
 
-        <h1>Satzmaschine</h1>
+      <aside class="side-card menu-card">
+        <h2>Future Menu</h2>
+        <p>Features coming soon</p>
+        <ul>
+          <li>Lessons</li>
+          <li>Quizzes</li>
+          <li>Progress</li>
+          <li>Stats</li>
+        </ul>
+      </aside>
 
-        <p class="subtitle">
-          STATUS: SENTENCE GENERATOR ONLINE
-        </p>
+      <section class="center-stack">
+        <section class="generator neon-card">
+          <p class="label">Say the sentence:</p>
 
-        <section class="generator">
+          <p id="sentence" class="sentence">
+            Loading...
+          </p>
 
-            <p class="label">
-                Say the sentence:
-            </p>
-
-            <p id="sentence" class="sentence">
-                Loading...
-            </p>
-
-            <button id="generateButton">
-                Generate Sentence
-            </button>
-
+          <button id="generateButton">
+            Generate
+          </button>
         </section>
 
-    </main>
+        <section class="cheat-card neon-card">
+          <h2>Grammar Help</h2>
 
-    <script src="satzmaschine.js"></script>
-    <script src="app.js"></script>
+          <div class="cheat-content">
+            <div>
+              <h3>Present tense verbs</h3>
+              <p>German verbs change based on who is doing the action.</p>
+            </div>
 
+            <table>
+              <tr>
+                <th>Pronoun</th>
+                <th>Ending</th>
+                <th>Example</th>
+              </tr>
+              <tr>
+                <td>ich</td>
+                <td>-e</td>
+                <td>ich esse</td>
+              </tr>
+              <tr>
+                <td>du</td>
+                <td>-st</td>
+                <td>du isst</td>
+              </tr>
+              <tr>
+                <td>er/sie/es</td>
+                <td>-t</td>
+                <td>er isst</td>
+              </tr>
+              <tr>
+                <td>wir</td>
+                <td>-en</td>
+                <td>wir essen</td>
+              </tr>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <aside class="side-card word-card">
+        <h2>Word Bank</h2>
+        <ul>
+          <li><span>sein</span> — to be</li>
+          <li><span>haben</span> — to have</li>
+          <li><span>gehen</span> — to go</li>
+          <li><span>essen</span> — to eat</li>
+          <li><span>trinken</span> — to drink</li>
+          <li><span>hätte gern</span> — would like</li>
+        </ul>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <script src="satzmaschine.js"></script>
+  <script src="app.js"></script>
 </body>
-
 </html>
