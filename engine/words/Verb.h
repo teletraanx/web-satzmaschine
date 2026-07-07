@@ -16,6 +16,7 @@ public:
     string ihrForm;
     string sieForm;
     vector<string> objectTags;
+    string english;
     // constructor
     Verb(string infinitive, 
         string ichForm,
@@ -24,7 +25,8 @@ public:
         string wirForm,
         string ihrForm,
         string sieForm,
-        vector<string> objectTags
+        vector<string> objectTags,
+        string english
     );
 
     string conjugate(const Pronoun& subject) const;

@@ -65,31 +65,47 @@ vector<Adjective> getValidAdjectives(const vector<Adjective>& adjectives, const 
 // 6: Noun + Linking Verb + Adjective
 
 // 5: Pronoun + Linking Verb + PersonNoun
-string genPronounLVerbPNoun(const Pronoun& pronoun, const Verb& verb, const PersonNoun& personNoun) {
+GeneratedSentence genPronounLVerbPNoun(const Pronoun& pronoun, const Verb& verb, const PersonNoun& personNoun) {
+	GeneratedSentence result;
+
 	// cout << "Pronoun + Linking Verb + PersonNoun" << endl; // DEBUG
 	if (pronoun.number == "plural") {
-		return capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.plural + ".";
+		result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.plural + ".";
 		//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << personNoun.plural << "." << endl;
+		result.words.push_back({ personNoun.plural, personNoun.english });
 	}
 	else if (pronoun.word == "sie") { // she/her
-		return capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.feminine + ".";
+		result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.feminine + ".";
 		//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << personNoun.feminine << "." << endl;
+		result.words.push_back({ personNoun.feminine, personNoun.english });
 	}
-	else
-		return capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.masculine + ".";
+	else {
+		result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.masculine + ".";
 		//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << personNoun.masculine << "." << endl;
+		result.words.push_back({ personNoun.masculine, personNoun.english });
+	}
+
+	result.words.push_back({ pronoun.word, pronoun.english });
+	result.words.push_back({ verb.conjugate(pronoun), verb.english });
+	return result;
 }
 
 // 4: Pronoun + Linking Verb + Adjective
-string genPronounLVerbAdjective(const Pronoun& pronoun, const Verb& verb, const Adjective& adjective) {
+GeneratedSentence genPronounLVerbAdjective(const Pronoun& pronoun, const Verb& verb, const Adjective& adjective) {
+	GeneratedSentence result;
 	//cout << "Pronoun + Linking Verb + Adjective" << endl; // DEBUG 
 	// Pronoun will always use singular adjective at the end 
 	//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << adjective.singular << "." << endl;
-	return capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + adjective.singular + ".";
+	result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + adjective.singular + ".";
+	result.words.push_back({ pronoun.word, pronoun.english });
+	result.words.push_back({ verb.conjugate(pronoun), verb.english });
+	result.words.push_back({ adjective.singular, adjective.english });
+	return result;
 }
 
 // 6: Noun + Linking Verb + Adjective
-string genNounLVerbAdjective(const StartNoun& noun, const NounStartingVerb& verb, const Adjective& adjective) {
+GeneratedSentence genNounLVerbAdjective(const StartNoun& noun, const NounStartingVerb& verb, const Adjective& adjective) {
+	GeneratedSentence result;
 	//cout << "Noun + Linking Verb + Adjective" << endl; // DEBUG 
 	if (noun.otherGender != "neuter") {
 		// flip for Masc, Fem, or Plural Noun
@@ -99,50 +115,78 @@ string genNounLVerbAdjective(const StartNoun& noun, const NounStartingVerb& verb
 			//cout << "DEBUG: " << "flipped masculine" << endl;
 			if (noun.otherGender == "feminine") { // if we flipped to use masculine, but the noun can't be, just use the plural form
 				//cout << "but the noun is only feminine. Using plural instead." << endl; // DEBUG
-				return "Die " + noun.plural + " " + verb.plural + " " + adjective.singular + ".";
+				result.sentence = "Die " + noun.plural + " " + verb.plural + " " + adjective.singular + ".";
 				//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << adjective.singular << "." << endl;
+				result.words.push_back({ noun.plural, noun.english });
+				result.words.push_back({ verb.plural, verb.english });
+				result.words.push_back({ adjective.singular, adjective.english });				
 			}
 			else {
-				return "Der " + noun.masc + " " + verb.singular + " " + adjective.singular + ".";
+				result.sentence = "Der " + noun.masc + " " + verb.singular + " " + adjective.singular + ".";
 				//cout << "Der" << " " << noun.masc << " " << verb.singular << " " << adjective.singular << "." << endl;
+				result.words.push_back({ noun.masc, noun.english });
+				result.words.push_back({ verb.singular, verb.english });
+				result.words.push_back({ adjective.singular, adjective.english });					
 			}
+			return result;
 		}
 		case 1: // noun is feminine
 		{
 			//cout << "DEBUG: " << "flipped feminine" << endl;
 			if (noun.otherGender == "masculine") { // if we flipped fem, but the noun can't be, just use plural
 				//cout << "but the noun is only masculine. Using plural instead." << endl; // DEBUG
-				return "Die " + noun.plural + " " + verb.plural + " " + adjective.singular + ".";
+				result.sentence = "Die " + noun.plural + " " + verb.plural + " " + adjective.singular + ".";
 				//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << adjective.singular << "." << endl;
+				result.words.push_back({ noun.plural, noun.english });
+				result.words.push_back({ verb.plural, verb.english });
+				result.words.push_back({ adjective.singular, adjective.english });			
 			}
 			else {
-				return "Die " + noun.fem + " " + verb.singular + " " + adjective.singular + ".";
+				result.sentence = "Die " + noun.fem + " " + verb.singular + " " + adjective.singular + ".";
 				//cout << "Die" << " " << noun.fem << " " << verb.singular << " " << adjective.singular << "." << endl;
+				result.words.push_back({ noun.fem, noun.english });
+				result.words.push_back({ verb.singular, verb.english });
+				result.words.push_back({ adjective.singular, adjective.english });			
 			}
+			return result;
 		}
 		case 2: // noun is plural
 		{
 			//cout << "DEBUG: " << "flipped plural" << endl;
-			return "Die " + noun.plural + " " + verb.plural + " " + adjective.singular + ".";
+			result.sentence = "Die " + noun.plural + " " + verb.plural + " " + adjective.singular + ".";
 			//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << adjective.singular << "." << endl;
+			result.words.push_back({ noun.plural, noun.english });
+			result.words.push_back({ verb.plural, verb.english });
+			result.words.push_back({ adjective.singular, adjective.english });		
+			return result;	
 		}
 		}
 	}
 	else { // for Wasser, can only use plural Das
-		return "Das " + noun.plural + " " + verb.singular + " " + adjective.singular + ".";
+		result.sentence = "Das " + noun.plural + " " + verb.singular + " " + adjective.singular + ".";
 		//cout << "Das" << " " << noun.plural << " " << verb.singular << " " << adjective.singular << "." << endl;
+		result.words.push_back({ noun.plural, noun.english });
+		result.words.push_back({ verb.singular, verb.english });
+		result.words.push_back({ adjective.singular, adjective.english });		
+		return result;	
 	}
 }
 
 // 2: Pronoun + Verb + Noun
-string genPronounVerbNoun(const Pronoun& pronoun, const Verb& verb, const Noun& noun) {
+GeneratedSentence genPronounVerbNoun(const Pronoun& pronoun, const Verb& verb, const Noun& noun) {
+	GeneratedSentence result;
 	//cout << "Pronoun + Verb + Noun" << endl; // DEBUG 
-	return capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + noun.noun + ".";
+	result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + noun.noun + ".";
 	//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << noun.noun << "." << endl;
+	result.words.push_back({ pronoun.word, pronoun.english });
+	result.words.push_back({ verb.conjugate(pronoun), verb.english });
+	result.words.push_back({ noun.noun, noun.english });		
+	return result;
 }
 
 // 0: Noun + Verb + Noun
-string genNounVerbNoun(const StartNoun& noun, const NounStartingVerb& verb, const StartNoun& secondNoun) {
+GeneratedSentence genNounVerbNoun(const StartNoun& noun, const NounStartingVerb& verb, const StartNoun& secondNoun) {
+	GeneratedSentence result;
 	//cout << "Noun + Verb + Noun" << endl; // DEBUG 
 	if (noun.otherGender != "neuter") {
 		// flip for Masc, Fem, or Plural Noun
@@ -153,12 +197,19 @@ string genNounVerbNoun(const StartNoun& noun, const NounStartingVerb& verb, cons
 			if (noun.otherGender == "feminine") { // if we flipped to use masculine, but the noun can't be, just use the plural form
 				//cout << "but the noun is only feminine. Using plural instead." << endl; // DEBUG
 				//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << secondNoun.masc << "." << endl;
-				return "Die " + noun.plural + " " + verb.plural + " " + secondNoun.masc + ".";
+				result.sentence = "Die " + noun.plural + " " + verb.plural + " " + secondNoun.masc + ".";
+				result.words.push_back({ noun.plural, noun.english });
+				result.words.push_back({ verb.plural, verb.english });
+				result.words.push_back({ secondNoun.masc, secondNoun.english });	
 			}
 			else {
-				return "Der " + noun.masc + " " + verb.singular + " " + secondNoun.masc + ".";
+				result.sentence = "Der " + noun.masc + " " + verb.singular + " " + secondNoun.masc + ".";
 				//cout << "Der" << " " << noun.masc << " " << verb.singular << " " << secondNoun.masc << "." << endl;
+				result.words.push_back({ noun.masc, noun.english });
+				result.words.push_back({ verb.singular, verb.english });
+				result.words.push_back({ secondNoun.masc, secondNoun.english });			
 			}
+			return result;
 		}
 		case 1: // noun is feminine
 		{
@@ -166,36 +217,57 @@ string genNounVerbNoun(const StartNoun& noun, const NounStartingVerb& verb, cons
 			if (noun.otherGender == "masculine") { // if we flipped fem, but the noun can't be, just use plural
 				//cout << "but the noun is only masculine. Using plural instead." << endl; // DEBUG
 				//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << secondNoun.masc << "." << endl;
-				return "Die " + noun.plural + " " + verb.plural + " " + secondNoun.masc + ".";
+				result.sentence = "Die " + noun.plural + " " + verb.plural + " " + secondNoun.masc + ".";
+				result.words.push_back({ noun.plural, noun.english });
+				result.words.push_back({ verb.plural, verb.english });
+				result.words.push_back({ secondNoun.masc, secondNoun.english });
 			}
 			else {
-				return "Die " + noun.fem + " " + verb.singular + " " + secondNoun.masc + ".";
+				result.sentence = "Die " + noun.fem + " " + verb.singular + " " + secondNoun.masc + ".";
 				//cout << "Die" << " " << noun.fem << " " << verb.singular << " " << secondNoun.masc << "." << endl;
+				result.words.push_back({ noun.fem, noun.english });
+				result.words.push_back({ verb.singular, verb.english });
+				result.words.push_back({ secondNoun.masc, secondNoun.english });			
 			}
+			return result;
 		}
 		case 2: // noun is plural
 		{
 			//cout << "DEBUG: " << "flipped plural" << endl;
 			//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << secondNoun.masc << "." << endl;
-			return "Die " + noun.plural + " " + verb.plural + " " + secondNoun.masc + ".";
+			result.sentence = "Die " + noun.plural + " " + verb.plural + " " + secondNoun.masc + ".";
+			result.words.push_back({ noun.plural, noun.english });
+			result.words.push_back({ verb.plural, verb.english });
+			result.words.push_back({ secondNoun.masc, secondNoun.english });
+			return result;
 		}
 		}
 	}
 	else { // for Wasser, can only use plural Das
-		return "Das " + noun.plural + " " + verb.singular + " " + secondNoun.masc + ".";
+		result.sentence = "Das " + noun.plural + " " + verb.singular + " " + secondNoun.masc + ".";
 		//cout << "Das" << " " << noun.plural << " " << verb.singular << " " << secondNoun.masc << "." << endl;
+		result.words.push_back({ noun.plural, noun.english });
+		result.words.push_back({ verb.singular, verb.english });
+		result.words.push_back({ secondNoun.masc, secondNoun.english });
+		return result;
 	}
 }
 
 // 3: Pronoun + Verb + Adverb
-string genPronounVerbAdverb(const Pronoun& pronoun, const Verb& verb, const Adverb& adverb) {
+GeneratedSentence genPronounVerbAdverb(const Pronoun& pronoun, const Verb& verb, const Adverb& adverb) {
+	GeneratedSentence result;
 	//cout << "Pronoun + Verb + Adverb" << endl;// DEBUG
 	//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << adverb.adverb << "." << endl;
-	return capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + adverb.adverb + ".";
+	result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + adverb.adverb + ".";
+	result.words.push_back({ pronoun.word, pronoun.english });
+	result.words.push_back({ verb.conjugate(pronoun), verb.english });
+	result.words.push_back({ adverb.adverb, adverb.english });
+	return result;
 }
 
 // 1: Noun + Verb + Adverb
-string genNounVerbAdverb(const StartNoun& noun, const NounStartingVerb& verb, const Adverb& adverb) {
+GeneratedSentence genNounVerbAdverb(const StartNoun& noun, const NounStartingVerb& verb, const Adverb& adverb) {
+	GeneratedSentence result;
 	//cout << "Noun + Verb + Adverb" << endl;// DEBUG
 	if (noun.otherGender != "neuter") {
 		// flip for Masc, Fem, or Plural Noun
@@ -206,12 +278,19 @@ string genNounVerbAdverb(const StartNoun& noun, const NounStartingVerb& verb, co
 			if (noun.otherGender == "feminine") { // if we flipped to use masculine, but the noun can't be, just use the plural form
 				//cout << "but the noun is only feminine. Using plural instead." << endl; // DEBUG
 				//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << adverb.adverb << "." << endl;
-				return "Die " + noun.plural + " " + verb.plural + " " + adverb.adverb + ".";
+				result.sentence = "Die " + noun.plural + " " + verb.plural + " " + adverb.adverb + ".";
+				result.words.push_back({ noun.plural, noun.english });
+				result.words.push_back({ verb.plural, verb.english });
+				result.words.push_back({ adverb.adverb, adverb.english });
 			}
 			else {
 				//cout << "Der" << " " << noun.masc << " " << verb.singular << " " << adverb.adverb << "." << endl;
-				return "Der " + noun.masc + " " + verb.singular + " " + adverb.adverb + ".";
+				result.sentence = "Der " + noun.masc + " " + verb.singular + " " + adverb.adverb + ".";
+				result.words.push_back({ noun.masc, noun.english });
+				result.words.push_back({ verb.singular, verb.english });
+				result.words.push_back({ adverb.adverb, adverb.english });
 			}
+			return result;
 		}
 		case 1: // noun is feminine
 		{
@@ -219,28 +298,43 @@ string genNounVerbAdverb(const StartNoun& noun, const NounStartingVerb& verb, co
 			if (noun.otherGender == "masculine") { // if we flipped fem, but the noun can't be, just use plural
 				//cout << "but the noun is only masculine. Using plural instead." << endl; // DEBUG
 				//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << adverb.adverb << "." << endl;
-				return "Die " + noun.plural + " " + verb.plural + " " + adverb.adverb + ".";
+				result.sentence = "Die " + noun.plural + " " + verb.plural + " " + adverb.adverb + ".";
+				result.words.push_back({ noun.plural, noun.english });
+				result.words.push_back({ verb.plural, verb.english });
+				result.words.push_back({ adverb.adverb, adverb.english });
 			}
 			else {
 				//cout << "Die" << " " << noun.fem << " " << verb.singular << " " << adverb.adverb << "." << endl;
-				return "Die " + noun.fem + " " + verb.singular + " " + adverb.adverb + ".";
+				result.sentence = "Die " + noun.fem + " " + verb.singular + " " + adverb.adverb + ".";
+				result.words.push_back({ noun.fem, noun.english });
+				result.words.push_back({ verb.singular, verb.english });
+				result.words.push_back({ adverb.adverb, adverb.english });
 			}
+			return result;
 		}
 		case 2: // noun is plural
 		{
 			//cout << "DEBUG: " << "flipped plural" << endl;
 			//cout << "Die" << " " << noun.plural << " " << verb.plural << " " << adverb.adverb << "." << endl;
-			return "Die " + noun.plural + " " + verb.plural + " " + adverb.adverb + ".";
+			result.sentence = "Die " + noun.plural + " " + verb.plural + " " + adverb.adverb + ".";
+			result.words.push_back({ noun.plural, noun.english });
+			result.words.push_back({ verb.plural, verb.english });
+			result.words.push_back({ adverb.adverb, adverb.english });
+			return result;
 		}
 		}
 	}
 	else { // for Wasser, can only use plural Das
 		//cout << "Das" << " " << noun.plural << " " << verb.singular << " " << adverb.adverb << "." << endl;
-		return "Das " + noun.plural + " " + verb.singular + " " + adverb.adverb + ".";
+		result.sentence = "Das " + noun.plural + " " + verb.singular + " " + adverb.adverb + ".";
+		result.words.push_back({ noun.plural, noun.english });
+		result.words.push_back({ verb.singular, verb.english });
+		result.words.push_back({ adverb.adverb, adverb.english });
+		return result;
 	}
 }
 
-string generatePronounSimpleSentence(const vector<Pronoun>& pronouns, const vector<Verb>& verbs, const vector<PersonNoun>& personNouns, const vector<Noun>& nouns, const vector<Adjective>& adjectives, const vector<Adverb>& adverbs) {
+GeneratedSentence generatePronounSimpleSentence(const vector<Pronoun>& pronouns, const vector<Verb>& verbs, const vector<PersonNoun>& personNouns, const vector<Noun>& nouns, const vector<Adjective>& adjectives, const vector<Adverb>& adverbs) {
 	Pronoun pronoun = getRandomItem(pronouns);
 	Verb verb = getRandomItem(verbs);
 
@@ -265,8 +359,6 @@ string generatePronounSimpleSentence(const vector<Pronoun>& pronouns, const vect
 				return genPronounLVerbAdjective(pronoun, verb, adjective);
 			}
 		}
-		default:
-			return "ERROR";
 		}
 	}
 	else { // non-linking verb chosen
@@ -291,14 +383,12 @@ string generatePronounSimpleSentence(const vector<Pronoun>& pronouns, const vect
 				Adverb adverb = getRandomItem(adverbs);
 				return genPronounVerbAdverb(pronoun, verb, adverb);
 			}
-			default:
-				return "ERROR";
 			}
 		}
 		else {
 			vector<Noun> validNouns = getValidNouns(nouns, verb);
 			if (validNouns.empty()) {
-				return "No valid nouns found for this verb: " + verb.conjugate(pronoun);
+				return generatePronounSimpleSentence(pronouns,verbs,personNouns,nouns,adjectives,adverbs);
 			}
 			else {
 				Noun noun = getRandomItem(validNouns);
@@ -306,10 +396,9 @@ string generatePronounSimpleSentence(const vector<Pronoun>& pronouns, const vect
 			}
 		}
 	}
-	return "ERROR";
 }
 
-string generateNounSimpleSentence(const vector<StartNoun>& nouns, const vector<NounStartingVerb>& verbs, const vector<Adjective>& adjectives, const vector<Adverb>& adverbs) {
+GeneratedSentence generateNounSimpleSentence(const vector<StartNoun>& nouns, const vector<NounStartingVerb>& verbs, const vector<Adjective>& adjectives, const vector<Adverb>& adverbs) {
 	NounStartingVerb verb = getRandomItem(verbs);
 	
 	if (verb.hasFirstTag("linking")) { // can only be Noun+LVerb+Adjective
@@ -368,10 +457,7 @@ string generateNounSimpleSentence(const vector<StartNoun>& nouns, const vector<N
 					return generateNounSimpleSentence(nouns, verbs, adjectives, adverbs);
 				}
 			}
-			default: 
-				return "ERROR";
 			}
 		}
 	}
-	return "ERROR";
 }

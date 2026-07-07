@@ -12,8 +12,9 @@ public:
 	string otherGender;
 	vector<string> firstTags;
 	vector<string> secondTags;
+	string english;
 
-	StartNoun(string masc, string fem, string plural, string otherGender, vector<string> firstTags, vector<string> secondTags);
+	StartNoun(string masc, string fem, string plural, string otherGender, vector<string> firstTags, vector<string> secondTags, string english);
 
 	bool acceptsAdjective(const Adjective& adjective) const;
 };

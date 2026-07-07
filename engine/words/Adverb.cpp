@@ -1,2 +1,2 @@
 #include "Adverb.h"
-Adverb::Adverb(string adverb) : adverb(adverb) {};
+Adverb::Adverb(string adverb, string english) : adverb(adverb), english(english) {};

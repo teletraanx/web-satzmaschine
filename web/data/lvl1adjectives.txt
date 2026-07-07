@@ -1,4 +1,4 @@
-singular,plural,tags
-heiß,heiß,food|drink
-kalt,kalt,food|drink
-müde,müden,person
+singular,plural,tags,english
+heiß,heiß,food|drink,hot
+kalt,kalt,food|drink,cold
+müde,müden,person,tired

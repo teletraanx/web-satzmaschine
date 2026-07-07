@@ -1,6 +1,6 @@
 #include "StartNoun.h"
-StartNoun::StartNoun(string masc, string fem, string plural, string otherGender, vector<string> firstTags, vector<string> secondTags)
-	: masc(masc), fem(fem), plural(plural), otherGender(otherGender), firstTags(firstTags), secondTags(secondTags) {
+StartNoun::StartNoun(string masc, string fem, string plural, string otherGender, vector<string> firstTags, vector<string> secondTags, string english)
+	: masc(masc), fem(fem), plural(plural), otherGender(otherGender), firstTags(firstTags), secondTags(secondTags), english(english) {
 }
 
 bool StartNoun::acceptsAdjective(const Adjective& adjective) const

@@ -56,16 +56,19 @@ vector<Pronoun> parsePronouns(string fileName) {
 		string word;
 		string person;
 		string number;
+		string english;
 
 		getline(ss, word, ','); // from string stream parse field 1, store in word, deliminated by ','
 		getline(ss, person, ',');
 		getline(ss, number, ',');
+		getline(ss, english, ',');
 
 		word = trim(word);
 		person = trim(person);
 		number = trim(number);
+		english = trim(english);
 
-		words.emplace_back(word, person, number);
+		words.emplace_back(word, person, number, english);
 	}
 	file.close();
 	return words;
@@ -88,6 +91,7 @@ vector<Verb> parseVerbs(string fileName) {
 		string ihrForm;
 		string sieForm;
 		string tagText;
+		string english;
 
 		getline(ss, infinitive, ',');
 		getline(ss, ichForm, ',');
@@ -97,6 +101,7 @@ vector<Verb> parseVerbs(string fileName) {
 		getline(ss, ihrForm, ',');
 		getline(ss, sieForm, ',');
 		getline(ss, tagText, ',');
+		getline(ss, english, ',');
 
 		infinitive = trim(infinitive);
 		ichForm = trim(ichForm);
@@ -106,8 +111,9 @@ vector<Verb> parseVerbs(string fileName) {
 		ihrForm = trim(ihrForm);
 		sieForm = trim(sieForm);
 		tagText = trim(tagText);
+		english = trim(english);
 
-		words.emplace_back(infinitive, ichForm, duForm, thirdSingularForm, wirForm, ihrForm, sieForm, splitTags(tagText));
+		words.emplace_back(infinitive, ichForm, duForm, thirdSingularForm, wirForm, ihrForm, sieForm, splitTags(tagText), english);
 	}
 	file.close();
 	return words;
@@ -125,16 +131,19 @@ vector<Noun> parseNouns(string fileName) {
 		string gender;
 		string word;
 		string objTagText;
+		string english;
 
 		getline(ss, gender, ',');
 		getline(ss, word, ',');
 		getline(ss, objTagText, ',');
+		getline(ss, english, ',');
 
 		gender = trim(gender);
 		word = trim(word);
 		objTagText = trim(objTagText);
+		english = trim(english);
 
-		words.emplace_back(gender, word, splitTags(objTagText));
+		words.emplace_back(gender, word, splitTags(objTagText), english);
 	}
 	file.close();
 	return words;
@@ -153,18 +162,21 @@ vector<PersonNoun> parsePersonNouns(string fileName) {
 		string feminine;
 		string plural;
 		string personnounTagText;
+		string english;
 
 		getline(ss, masculine, ',');
 		getline(ss, feminine, ',');
 		getline(ss, plural, ',');
 		getline(ss, personnounTagText, ',');
+		getline(ss, english, ',');
 
 		masculine = trim(masculine);
 		feminine = trim(feminine);
 		plural = trim(plural);
 		personnounTagText = trim(personnounTagText);
+		english = trim(english);
 
-		words.emplace_back(masculine, feminine, plural, splitTags(personnounTagText));
+		words.emplace_back(masculine, feminine, plural, splitTags(personnounTagText), english);
 	}
 	file.close();
 	return words;
@@ -182,16 +194,19 @@ vector<Adjective> parseAdjectives(string fileName) {
 		string singular;
 		string plural;
 		string tagText;
+		string english;
 
 		getline(ss, singular, ',');
 		getline(ss, plural, ',');
 		getline(ss, tagText, ',');
+		getline(ss, english, ',');
 
 		singular = trim(singular);
 		plural = trim(plural);
 		tagText = trim(tagText);
+		english = trim(english);
 
-		words.emplace_back(singular, plural, splitTags(tagText));
+		words.emplace_back(singular, plural, splitTags(tagText), english);
 	}
 	file.close();
 	return words;
@@ -207,12 +222,15 @@ vector<Adverb> parseAdverbs(string fileName) {
 	while (getline(file, line)) {
 		stringstream ss(line);
 		string adverb;
+		string english;
 
 		getline(ss, adverb, ',');
+		getline(ss, english, ',');
 
 		adverb = trim(adverb);
+		english = trim(english);
 
-		words.emplace_back(adverb);
+		words.emplace_back(adverb, english);
 	}
 	file.close();
 	return words;
@@ -233,6 +251,7 @@ vector<StartNoun> parseStartNouns(string fileName) {
 		string otherGender;
 		string firstTagText;
 		string secondTagText;
+		string english;
 
 		getline(ss, masc, ',');
 		getline(ss, fem, ',');
@@ -240,6 +259,7 @@ vector<StartNoun> parseStartNouns(string fileName) {
 		getline(ss, otherGender, ',');
 		getline(ss, firstTagText, ',');
 		getline(ss, secondTagText, ',');
+		getline(ss, english, ',');
 
 		masc = trim(masc);
 		fem = trim(fem);
@@ -247,8 +267,9 @@ vector<StartNoun> parseStartNouns(string fileName) {
 		otherGender = trim(otherGender);
 		firstTagText = trim(firstTagText);
 		secondTagText = trim(secondTagText);
+		english = trim(english);
 
-		words.emplace_back(masc, fem, plural, otherGender, splitTags(firstTagText), splitTags(secondTagText));
+		words.emplace_back(masc, fem, plural, otherGender, splitTags(firstTagText), splitTags(secondTagText), english);
 	}
 	file.close();
 	return words;
@@ -267,18 +288,21 @@ vector<NounStartingVerb> parseNounStartingVerbs(string fileName) {
 		string plural;
 		string firstTagText;
 		string secondTagText;
+		string english;
 
 		getline(ss, singular, ',');
 		getline(ss, plural, ',');
 		getline(ss, firstTagText, ',');
 		getline(ss, secondTagText, ',');
+		getline(ss, english, ',');
 
 		singular = trim(singular);
 		plural = trim(plural);
 		firstTagText = trim(firstTagText);
 		secondTagText = trim(secondTagText);
+		english = trim(english);
 
-		words.emplace_back(singular, plural, splitTags(firstTagText), splitTags(secondTagText));
+		words.emplace_back(singular, plural, splitTags(firstTagText), splitTags(secondTagText), english);
 	}
 	file.close();
 	return words;

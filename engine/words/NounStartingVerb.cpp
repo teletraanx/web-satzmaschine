@@ -1,7 +1,7 @@
 #include "NounStartingVerb.h"
 
-NounStartingVerb::NounStartingVerb(string singular, string plural, vector<string> firstTags, vector<string> secondTags)
-	: singular(singular), plural(plural), firstTags(firstTags), secondTags(secondTags) {
+NounStartingVerb::NounStartingVerb(string singular, string plural, vector<string> firstTags, vector<string> secondTags, string english)
+	: singular(singular), plural(plural), firstTags(firstTags), secondTags(secondTags), english(english) {
 }
 
 bool NounStartingVerb::hasFirstTag(const string& tag) const {

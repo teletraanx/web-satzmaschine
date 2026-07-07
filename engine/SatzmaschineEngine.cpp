@@ -1,6 +1,7 @@
 #include "SatzmaschineEngine.h"
 #include "parsing/Utility.h"
 #include "generation/Sentence.h"
+#include "words/GeneratedSentence.h"
 
 SatzmaschineEngine::SatzmaschineEngine()
 {
@@ -26,7 +27,7 @@ bool SatzmaschineEngine::loadedSuccessfully() const
         && !nounStartingVerbs.empty();
 }
 
-std::string SatzmaschineEngine::generateLevelOneSentence() const
+GeneratedSentence SatzmaschineEngine::generateLevelOneSentence() const
 {
     switch (coinFlip()) {
     case 0:
@@ -46,8 +47,5 @@ std::string SatzmaschineEngine::generateLevelOneSentence() const
             adjectives,
             adverbs
         );
-
-    default:
-        return "ERROR";
     }
 }

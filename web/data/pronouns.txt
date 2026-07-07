@@ -1,7 +1,7 @@
-word,perspective,number
-ich,first,singular
-wir,first,plural
-du,second,singular
-er,third,singular
-sie,third,singular
-sie,third,plural
+word,perspective,number,english
+ich,first,singular,I
+wir,first,plural,we
+du,second,singular,you
+er,third,singular,he
+sie,third,singular,she
+sie,third,plural,they

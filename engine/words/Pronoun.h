@@ -7,6 +7,7 @@ public:
     string word; // ich
     string person; // first
     string number; // singular
+    string english;
 
-    Pronoun(string w, string p, string n);
+    Pronoun(string w, string p, string n, string english);
 };

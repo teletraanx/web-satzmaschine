@@ -8,7 +8,8 @@ Verb::Verb(string infinitive,
     string wirForm,
     string ihrForm,
     string sieForm,
-    vector<string> objectTags) 
+    vector<string> objectTags,
+    string english) 
     : infinitive(infinitive),
       ichForm(ichForm),
       duForm(duForm),
@@ -16,7 +17,8 @@ Verb::Verb(string infinitive,
       wirForm(wirForm),
       ihrForm(ihrForm),
       sieForm(sieForm),
-      objectTags(objectTags)
+      objectTags(objectTags),
+      english(english)
     {}; // constructor 
 
 string Verb::conjugate(const Pronoun& subject) const {

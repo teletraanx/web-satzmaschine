@@ -1,4 +1,4 @@
-word
-heute
-jetzt
-hier
+word,english
+heute,today
+jetzt,now
+hier,here

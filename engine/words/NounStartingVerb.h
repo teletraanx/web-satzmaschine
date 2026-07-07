@@ -10,8 +10,9 @@ public:
 	string plural;
 	vector<string> firstTags;
 	vector<string> secondTags;
+	string english;
 
-	NounStartingVerb(string singular, string plural, vector<string> firstTags, vector<string> secondTags);
+	NounStartingVerb(string singular, string plural, vector<string> firstTags, vector<string> secondTags, string english);
 
 	bool hasFirstTag(const string& tag) const;
 	bool hasSecondTag(const string& tag) const;

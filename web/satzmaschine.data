@@ -1,39 +1,39 @@
-singular,plural,tags
-heiß,heiß,food|drink
-kalt,kalt,food|drink
-müde,müden,personword
-heute
-jetzt
-hier
-gender,word,tags
-neuter,Kaffee,drink|thing
-neuter,Wasser,drink|thing
+singular,plural,tags,english
+heiß,heiß,food|drink,hot
+kalt,kalt,food|drink,cold
+müde,müden,person,tiredword,english
+heute,today
+jetzt,now
+hier,here
+gender,word,tags,english
+neuter,Kaffee,drink|thing,coffee
+neuter,Wasser,drink|thing,water
 
 
-thirdSingular,thirdPlural,firstlink,secondlink
-ist,sind,linking,null
-geht,gehen,person,adverb
-hat,haben,person,food|drink
-hätte gern,hätten gern,person,food|drink
-isst,essen,person,food|adverb
-trinkt,trinken,person,drink|adverbmasculine,feminine,plural,tags
-Student,Studentin,Studenten,linkingMasc,Femin,Plural,othergender,firstlink,secondlink
-Frau,Frau,Frauen,feminine,person,person
-Hund,Hundin,Hunde,null,person,person
-Kaffee,Kaffee,Kaffee,masculine,drink
-Kater,Katze,Katzen,null,person,person
-Mann,Mann,Männer,masculine,person,person
-Student,Studentin,Studenten,null,person,person
-Wasser,Wasser,Wasser,neuter,null,drinkinfinitive,i,you,he/she,we,youall,they
-essen,esse,isst,isst,essen,esst,essen,food|adverb
-gehen,gehe,gehst,geht,gehen,geht,gehen,place|adverb
-haben,habe,hast,hat,haben,habt,haben,drink|food|thing
-hätten gern,hätte gern,hättest gern,hätte gern,hätten gern,hättet gern,hätten gern,food|drink|thing
-sein,bin,bist,ist,sind,seid,sind,linking
-trinken,trinke,trinkst,trinkt,trinken,trinkt,trinken,drink|adverbword,perspective,number
-ich,first,singular
-wir,first,plural
-du,second,singular
-er,third,singular
-sie,third,singular
-sie,third,plural
+thirdSingular,thirdPlural,firstlink,secondlink,english
+ist,sind,linking,null,to be
+geht,gehen,person,adverb,to go/walk
+hat,haben,person,food|drink,to have
+hätte gern,hätten gern,person,food|drink,would like to have
+isst,essen,person,food|adverb,to eat
+trinkt,trinken,person,drink|adverb,to drinkmasculine,feminine,plural,tags,english
+Student,Studentin,Studenten,linking,studentMasc,Femin,Plural,othergender,firstlink,secondlink,english
+Frau,Frau,Frauen,feminine,person,person,woman
+Hund,Hundin,Hunde,null,person,person,dog
+Kaffee,Kaffee,Kaffee,masculine,drink,coffee
+Kater,Katze,Katzen,null,person,person,cat
+Mann,Mann,Männer,masculine,person,person,man
+Student,Studentin,Studenten,null,person,person,student
+Wasser,Wasser,Wasser,neuter,null,drink,waterinfinitive,i,you,he/she,we,youall,they,english
+essen,esse,isst,isst,essen,esst,essen,food|adverb,to eat
+gehen,gehe,gehst,geht,gehen,geht,gehen,place|adverb,to go/walk
+haben,habe,hast,hat,haben,habt,haben,drink|food|thing,to have
+hätten gern,hätte gern,hättest gern,hätte gern,hätten gern,hättet gern,hätten gern,food|drink|thing,would like to have
+sein,bin,bist,ist,sind,seid,sind,linking,to be
+trinken,trinke,trinkst,trinkt,trinken,trinkt,trinken,drink|adverb,to drinkword,perspective,number,english
+ich,first,singular,I
+wir,first,plural,we
+du,second,singular,you
+er,third,singular,he
+sie,third,singular,she
+sie,third,plural,they

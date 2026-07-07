@@ -8,7 +8,8 @@ public:
 	string gender;
 	string noun;
 	vector<string> tags;
+	string english;
 
 	// constructor
-	Noun(string gender, string noun, vector<string> tags);
+	Noun(string gender, string noun, vector<string> tags, string english);
 };

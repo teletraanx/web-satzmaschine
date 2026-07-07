@@ -1,2 +1,2 @@
-masculine,feminine,plural,tags
-Student,Studentin,Studenten,linking
+masculine,feminine,plural,tags,english
+Student,Studentin,Studenten,linking,student

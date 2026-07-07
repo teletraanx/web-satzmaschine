@@ -1,6 +1,6 @@
 #include "Adjective.h"
 
-Adjective::Adjective(string singular, string plural, vector<string> tags) : singular(singular), plural(plural), tags(tags) {};
+Adjective::Adjective(string singular, string plural, vector<string> tags, string english) : singular(singular), plural(plural), tags(tags), english(english) {};
 
 bool Adjective::hasTag(const string& tag) const {
 	for (const string& adjectiveTag : tags) {

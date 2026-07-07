@@ -11,6 +11,7 @@
 #include "words/Adverb.h"
 #include "words/StartNoun.h"
 #include "words/NounStartingVerb.h"
+#include "words/GeneratedSentence.h"
 using namespace std;
 
 class SatzmaschineEngine {
@@ -28,5 +29,5 @@ public:
     SatzmaschineEngine();
 
     bool loadedSuccessfully() const;
-    string generateLevelOneSentence() const;
+    GeneratedSentence generateLevelOneSentence() const;
 };
