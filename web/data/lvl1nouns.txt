@@ -1,5 +1,5 @@
 gender,word,tags,english
-neuter,Kaffee,drink|thing,coffee
+masculine,Kaffee,drink|thing,coffee
 neuter,Wasser,drink|thing,water
 
 

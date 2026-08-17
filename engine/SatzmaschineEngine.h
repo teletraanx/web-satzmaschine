@@ -1,8 +1,8 @@
 #pragma once
 
-#include <string>
 #include <vector>
 
+#include "words/GeneratedSentence.h"
 #include "words/Pronoun.h"
 #include "words/Verb.h"
 #include "words/Noun.h"
@@ -11,23 +11,45 @@
 #include "words/Adverb.h"
 #include "words/StartNoun.h"
 #include "words/NounStartingVerb.h"
-#include "words/GeneratedSentence.h"
 using namespace std;
 
-class SatzmaschineEngine {
+class SatzmaschineEngine
+{
 private:
-    vector<Pronoun> pronouns;
-    vector<Verb> verbs;
-    vector<Noun> nouns;
-    vector<PersonNoun> personNouns;
-    vector<Adjective> adjectives;
-    vector<Adverb> adverbs;
-    vector<StartNoun> startNouns;
-    vector<NounStartingVerb> nounStartingVerbs;
+    // Level 1 word banks
+    vector<Pronoun> levelOnePronouns;
+    vector<Verb> levelOneVerbs;
+    vector<Noun> levelOneNouns;
+    vector<PersonNoun> levelOnePersonNouns;
+    vector<Adjective> levelOneAdjectives;
+    vector<Adverb> levelOneAdverbs;
+    vector<StartNoun> levelOneStartNouns;
+    vector<NounStartingVerb>
+        levelOneNounStartingVerbs;
+
+    // Level 2 word banks
+    vector<Pronoun> levelTwoPronouns;
+    vector<Verb> levelTwoVerbs;
+    vector<Noun> levelTwoNouns;
+    vector<PersonNoun> levelTwoPersonNouns;
+    vector<Adjective> levelTwoAdjectives;
+    vector<Adverb> levelTwoAdverbs;
+    vector<StartNoun> levelTwoStartNouns;
+    vector<NounStartingVerb>
+        levelTwoNounStartingVerbs;
+
+    GeneratedSentence
+        generateLevelOneSentence() const;
+
+    GeneratedSentence
+        generateLevelTwoSentence() const;
 
 public:
     SatzmaschineEngine();
 
     bool loadedSuccessfully() const;
-    GeneratedSentence generateLevelOneSentence() const;
+
+    GeneratedSentence generateSentence(
+        const vector<int>& selectedLevels
+    ) const;
 };

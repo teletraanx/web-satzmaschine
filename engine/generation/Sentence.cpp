@@ -1,18 +1,5 @@
 #include "Sentence.h"
 
-template <typename T> 
-const T& getRandomItem(const vector<T>& items) {
-	if (items.empty()) {
-		throw runtime_error("ERROR: getRandomItem called with empty vector.");
-	}
-
-	static random_device rd;
-	static mt19937 gen(rd());
-
-	uniform_int_distribution<> dist(0, static_cast<int>(items.size()) - 1);
-	return items[dist(gen)];
-}
-
 // Valid noun depends on verb's tags
 vector<Noun> getValidNouns(const vector<Noun>& nouns, const Verb& verb) {
 	vector<Noun> validNouns;
@@ -460,4 +447,86 @@ GeneratedSentence generateNounSimpleSentence(const vector<StartNoun>& nouns, con
 			}
 		}
 	}
+}
+
+GeneratedSentence generateNichtSentence() {
+	//
+}
+GeneratedSentence generateEinOrKeinSentence(const vector<Pronoun>& pronouns, const vector<Verb>& verbs, const vector<Noun>& nouns, const vector<PersonNoun>& personNouns) {
+	GeneratedSentence result;
+	GeneratedSentence firstSentence;
+	vector<string> splitSentence;
+	string part;
+
+	vector <Verb> validVerbs;
+	for (Verb word : verbs) {
+		if (word.hasTag("kein")) { validVerbs.push_back(word); }
+	}
+
+	Pronoun pronoun = getRandomItem(pronouns);
+	Verb verb = getRandomItem(validVerbs);
+	vector<Noun> validNouns = getValidNouns(nouns, verb);
+	Noun noun = getRandomItem(validNouns);
+	PersonNoun personNoun = getRandomItem(personNouns);
+	int choice;
+
+	choice = coinFlip(); // flip again for kein vs ein
+
+	if (verb.hasTag("linking")) // use Person Noun
+	{
+		// I am not a student. (can't use ein here)
+		firstSentence = genPronounLVerbPNoun(pronoun, verb, personNoun);
+		result.words = firstSentence.words;
+		stringstream ss(firstSentence.sentence);
+		while(getline(ss, part, ' ')) { splitSentence.push_back(part); }
+
+		if (splitSentence[2] == personNoun.masculine) // if person noun is masculine, use keinen
+		{
+			result.sentence = splitSentence[0] + " " + splitSentence[1] + " keinen " + splitSentence[2];
+			result.words.push_back({ "keinen", "not one, masc." });
+		} 
+		else { // if fem or plural, use keine
+			result.sentence = splitSentence[0] + " " + splitSentence[1] + " keine " + splitSentence[2];
+			result.words.push_back({ "keine", "not one/not any, fem./plural" });
+		}
+	} 
+	else {
+		// I do not have a coffee. I have a coffee.
+		firstSentence = genPronounVerbNoun(pronoun, verb, noun);
+		stringstream ss(firstSentence.sentence);
+		result.words = firstSentence.words;
+		while(getline(ss, part, ' ')) { splitSentence.push_back(part); }
+
+		if (choice == 0) { // kein
+			if (noun.gender == "masculine") {
+				firstSentence.sentence = splitSentence[0] + " " + splitSentence[1] + " keinen " + splitSentence[2];
+				result.words.push_back({ "keinen", "not one, masc." });
+			} else if (noun.gender == "neuter") {
+				firstSentence.sentence = splitSentence[0] + " " + splitSentence[1] + " kein " + splitSentence[2];
+				result.words.push_back({ "kein", "not one, neuter." });
+			} else {
+				firstSentence.sentence = splitSentence[0] + " " + splitSentence[1] + " keine " + splitSentence[2];
+				result.words.push_back({ "keine", "not one, fem." });
+			}
+		} else { // ein
+			if (noun.gender == "masculine") {
+				firstSentence.sentence = splitSentence[0] + " " + splitSentence[1] + " einen " + splitSentence[2];
+			    result.words.push_back({ "einen", "a, masc." });
+			} else if (noun.gender == "neuter") {
+				firstSentence.sentence = splitSentence[0] + " " + splitSentence[1] + " ein " + splitSentence[2];
+				result.words.push_back({ "ein", "a, neuter" });
+			} else {
+				firstSentence.sentence = splitSentence[0] + " " + splitSentence[1] + " eine " + splitSentence[2];
+				result.words.push_back({ "eine", "a, fem." });
+			}
+		}
+	}
+	return result;
+}
+GeneratedSentence generateYesNoQuestion() {
+	//
+}
+
+GeneratedSentence generateKeinSentence() {
+	//
 }

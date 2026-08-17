@@ -6,7 +6,7 @@ heute,today
 jetzt,now
 hier,here
 gender,word,tags,english
-neuter,Kaffee,drink|thing,coffee
+masculine,Kaffee,drink|thing,coffee
 neuter,Wasser,drink|thing,water
 
 
@@ -24,12 +24,12 @@ Kaffee,Kaffee,Kaffee,masculine,drink,coffee
 Kater,Katze,Katzen,null,person,person,cat
 Mann,Mann,Männer,masculine,person,person,man
 Student,Studentin,Studenten,null,person,person,student
-Wasser,Wasser,Wasser,neuter,null,drink,waterinfinitive,i,you,he/she,we,youall,they,english
+Wasser,Wasser,Wasser,neuter,null,drink,waterinfinitive,i,you,he/she,we,youall,they,tags,english
 essen,esse,isst,isst,essen,esst,essen,food|adverb,to eat
 gehen,gehe,gehst,geht,gehen,geht,gehen,place|adverb,to go/walk
-haben,habe,hast,hat,haben,habt,haben,drink|food|thing,to have
+haben,habe,hast,hat,haben,habt,haben,drink|food|kein|thing,to have
 hätten gern,hätte gern,hättest gern,hätte gern,hätten gern,hättet gern,hätten gern,food|drink|thing,would like to have
-sein,bin,bist,ist,sind,seid,sind,linking,to be
+sein,bin,bist,ist,sind,seid,sind,kein|linking,to be
 trinken,trinke,trinkst,trinkt,trinken,trinkt,trinken,drink|adverb,to drinkword,perspective,number,english
 ich,first,singular,I
 wir,first,plural,we

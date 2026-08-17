@@ -1,36 +1,78 @@
 #include <emscripten/bind.h>
-#include <string>
+
 #include <sstream>
+#include <string>
+#include <vector>
 
 #include "engine/SatzmaschineEngine.h"
 #include "engine/words/GeneratedSentence.h"
-using namespace std;
 
 SatzmaschineEngine engine;
 GeneratedSentence currentSentence;
 
-string generateSentenceForWeb()
-{
+std::vector<int> parseSelectedLevels(
+    const std::string& selectedLevelsText
+) {
+    std::vector<int> selectedLevels;
+    std::stringstream stream(selectedLevelsText);
+    std::string levelText;
+
+    while (std::getline(stream, levelText, ',')) {
+        if (levelText.empty()) {
+            continue;
+        }
+
+        std::stringstream levelStream(levelText);
+        int level = 0;
+
+        if (levelStream >> level && level > 0) {
+            selectedLevels.push_back(level);
+        }
+    }
+
+    return selectedLevels;
+}
+
+std::string generateSentenceForWeb(
+    const std::string& selectedLevelsText
+) {
     if (!engine.loadedSuccessfully()) {
         return "Failed to load words.";
     }
 
-    currentSentence = engine.generateLevelOneSentence();
+    const std::vector<int> selectedLevels =
+        parseSelectedLevels(selectedLevelsText);
+
+    currentSentence =
+        engine.generateSentence(selectedLevels);
+
     return currentSentence.sentence;
 }
 
-string getCurrentWordsForWeb() {
-    stringstream ss;
+std::string getCurrentWordsForWeb()
+{
+    std::stringstream output;
 
     for (const DisplayWord& word : currentSentence.words) {
-        ss << word.german << "|" << word.english << "\n";
+        output
+            << word.german
+            << "|"
+            << word.english
+            << "\n";
     }
 
-    return ss.str();
+    return output.str();
 }
 
 EMSCRIPTEN_BINDINGS(satzmaschine_module)
 {
-    emscripten::function("generateSentence", &generateSentenceForWeb);
-    emscripten::function("getCurrentWords", &getCurrentWordsForWeb);
+    emscripten::function(
+        "generateSentence",
+        &generateSentenceForWeb
+    );
+
+    emscripten::function(
+        "getCurrentWords",
+        &getCurrentWordsForWeb
+    );
 }

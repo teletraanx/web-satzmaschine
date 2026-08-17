@@ -10,6 +10,7 @@
 #include "../words/StartNoun.h"
 #include "../words/GeneratedSentence.h"
 #include <random>
+#include <sstream>
 using namespace std;
 
 template <typename T>
@@ -30,3 +31,8 @@ GeneratedSentence genNounVerbAdverb(const StartNoun& noun, const NounStartingVer
 
 GeneratedSentence generatePronounSimpleSentence(const vector<Pronoun>& pronouns, const vector<Verb>& verbs, const vector<PersonNoun>& personNouns, const vector<Noun>& nouns, const vector<Adjective>& adjectives, const vector<Adverb>& adverbs);
 GeneratedSentence generateNounSimpleSentence(const vector<StartNoun>& nouns, const vector<NounStartingVerb>& verbs, const vector<Adjective>& adjectives, const vector<Adverb>& adverbs);
+GeneratedSentence generateKeinSentence();
+GeneratedSentence generateNichtSentence();
+GeneratedSentence generateEinOrKeinSentence();
+GeneratedSentence generateYesNoQuestion();
+//GeneratedSentence generateMeinOrDeinSentence();
