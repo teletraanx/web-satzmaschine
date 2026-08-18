@@ -1,0 +1,20 @@
+Kind,Level,English,Word,Categories,Number,Person,Singular First (Verb),Singular Second (Verb),Singular Third (Verb),Plural (Verb),Gender,Neuter (Noun),Masculine (Noun),Feminine (Noun),Plural (Noun)
+pronoun,1,i,ich,,singular,first,,,,,,,,,
+pronoun,1,you,du,,singular,second,,,,,,,,,
+pronoun,1,he,er,,singular,third,,,,,,,,,
+pronoun,1,she,sie,,singular,third,,,,,,,,,
+pronoun,1,we,wir,,plural,first,,,,,,,,,
+pronoun,1,they,sie,,plural,third,,,,,,,,,
+verb,1,to eat,essen,food,,,esse,isst,isst,essen,,,,,
+verb,1,to have,haben,food|drink,,,habe,hast,hat,haben,,,,,
+verb,1,would like to have,hatten gern,food|drink,,,hätte gerne,hättest gerne,hätte gerne,hätten gerne,,,,,
+linking verb,1,to be,sein,,,,bin,bist,ist,sind,,,,,
+verb,1,to drink,trinken,drink,,,trinke,trinkst,trinkt,trinken,,,,,
+noun,1,student,Student,profession,,,,,,,Masculine,,Student,Studentin,Studenten
+noun,1,coffee,Kaffee,drink,,,,,,,Masculine,,Kaffee,,
+noun,1,water,Wasser,drink,,,,,,,Neuter,Wasser,,,
+noun,1,woman,Frau,person,,,,,,,Feminine,,,Frau,Frauen
+noun,1,dog,Hund,animal,,,,,,,Masculine,,Hund,Hündin,Hunde
+noun,1,cat,Katze,animal,,,,,,,Feminine,,Kater,Katze,Katzen
+noun,1,man,Mann,person,,,,,,,Masculine,,Mann,,Männer
+noun,1,bread,Brot,food,,,,,,,Neuter,Brot,,,

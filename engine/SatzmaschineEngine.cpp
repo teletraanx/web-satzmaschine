@@ -1,22 +1,18 @@
 #include "SatzmaschineEngine.h"
-#include "parsing/Utility.h"
+#include "utility/Utility.h"
+#include "utility/parsing.h"
+#include "utility/WordBank.h"
 #include "generation/Sentence.h"
 #include "words/GeneratedSentence.h"
 
 SatzmaschineEngine::SatzmaschineEngine()
 {
-    levelOnePronouns = parsePronouns("data/pronouns.txt");
-    levelOneVerbs = parseVerbs("data/lvl1verbs.txt");
-    levelOneNouns = parseNouns("data/lvl1nouns.txt");
-    levelOnePersonNouns = parsePersonNouns("data/lvl1personnouns.txt");
-    levelOneAdjectives = parseAdjectives("data/lvl1adjectives.txt");
-    levelOneAdverbs = parseAdverbs("data/lvl1adverbs.txt");
-    levelOneStartNouns = parseStartNouns("data/lvl1startnouns.txt");
-    levelOneNounStartingVerbs = parseNounStartingVerbs("data/lvl1nounstartingverbs.txt");
+    WordBank words = parseWords("data/words.csv");
 }
 
 bool SatzmaschineEngine::loadedSuccessfully() const
 {
+    /*
     return !levelOnePronouns.empty()
         && !levelOneVerbs.empty()
         && !levelOneNouns.empty()
@@ -25,6 +21,7 @@ bool SatzmaschineEngine::loadedSuccessfully() const
         && !levelOneAdverbs.empty()
         && !levelOneStartNouns.empty()
         && !levelOneNounStartingVerbs.empty();
+    */
 }
 
 GeneratedSentence

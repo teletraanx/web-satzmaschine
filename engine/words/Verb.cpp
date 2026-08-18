@@ -1,45 +1,42 @@
 #include "Verb.h"
 
-// verbs.txt: infinitive,ichForm,duForm,thirdSingularForm,wirForm,ihrForm,sieForm
-Verb::Verb(string infinitive,
-    string ichForm,
-    string duForm,
-    string thirdSingularForm,
-    string wirForm,
-    string ihrForm,
-    string sieForm,
-    vector<string> objectTags,
-    string english) 
-    : infinitive(infinitive),
-      ichForm(ichForm),
-      duForm(duForm),
-      thirdSingularForm(thirdSingularForm),
-      wirForm(wirForm),
-      ihrForm(ihrForm),
-      sieForm(sieForm),
-      objectTags(objectTags),
-      english(english)
+Verb::Verb(string kind,
+    string level,
+    string english,
+    string word,
+    vector<string> categories,
+    string singularFirst,
+    string singularSecond,
+    string singularThird,
+    string pluralVerb) 
+    : kind(kind),
+      level(level),
+      english(english),
+      word(word),
+      categories(categories),
+      singularFirst(singularFirst),
+      singularSecond(singularSecond),
+      singularThird(singularThird),
+      pluralVerb(pluralVerb)
     {}; // constructor 
 
 string Verb::conjugate(const Pronoun& subject) const {
-    if (subject.person == "first" && subject.number == "singular") return ichForm;
-    if (subject.person == "first" && subject.number == "plural") return wirForm;
-    if (subject.person == "second" && subject.number == "singular") return duForm;
-    if (subject.person == "second" && subject.number == "plural") return ihrForm;
-    if (subject.person == "third" && subject.number == "singular") return thirdSingularForm;
-    if (subject.person == "third" && subject.number == "plural") return sieForm;
+    if (subject.person == "third" && subject.number == "singular") return singularThird;
+    if (subject.person == "second" && subject.number == "singular") return singularSecond;
+    if (subject.person == "first" && subject.number == "singular") return singularFirst;
+    if (subject.number == "plural") return pluralVerb;
 
-    return infinitive;
+    return "ERROR";
 }
 
 bool Verb::acceptsNoun(const Noun& noun) const
 {
-    for (const string& verbTag : objectTags) {
-        if (verbTag == "none") {
+    for (const string& verbTag : categories) {
+        if (verbTag == "") {
             return false;
         }
 
-        for (const string& nounTag : noun.tags) {
+        for (const string& nounTag : noun.categories) {
             if (verbTag == nounTag) {
                 return true;
             }
@@ -50,7 +47,7 @@ bool Verb::acceptsNoun(const Noun& noun) const
 }
 
 bool Verb::hasTag(const string& tag) const {
-    for (const string& verbTag : objectTags) {
+    for (const string& verbTag : categories) {
         if (verbTag == tag) { return true;  }
     }
     return false;

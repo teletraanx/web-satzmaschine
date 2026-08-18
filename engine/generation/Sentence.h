@@ -3,7 +3,7 @@
 #include "../words/Noun.h"
 #include "../words/Verb.h"
 #include "../words/PersonNoun.h"
-#include "../parsing/Utility.h"
+#include "../utility/Utility.h"
 #include "../words/Adjective.h"
 #include "../words/Adverb.h"
 #include "../words/NounStartingVerb.h"

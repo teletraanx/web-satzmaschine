@@ -4,10 +4,12 @@ using namespace std;
 
 class Pronoun {
 public:
-    string word; // ich
-    string person; // first
-    string number; // singular
+    string kind;
+    string level;
     string english;
+    string word; 
+    string number; 
+    string person; 
 
-    Pronoun(string w, string p, string n, string english);
+    Pronoun(string kind, string level, string english, string word, string number, string person);
 };

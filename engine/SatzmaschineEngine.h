@@ -17,7 +17,7 @@ class SatzmaschineEngine
 {
 private:
     // Level 1 word banks
-    vector<Pronoun> levelOnePronouns;
+    /*
     vector<Verb> levelOneVerbs;
     vector<Noun> levelOneNouns;
     vector<PersonNoun> levelOnePersonNouns;
@@ -37,6 +37,7 @@ private:
     vector<StartNoun> levelTwoStartNouns;
     vector<NounStartingVerb>
         levelTwoNounStartingVerbs;
+    */
 
     GeneratedSentence
         generateLevelOneSentence() const;

@@ -5,11 +5,17 @@ using namespace std;
 
 class Noun {
 public:
-	string gender;
-	string noun;
-	vector<string> tags;
+	string kind;
+	string level;
 	string english;
+	string word;
+	vector<string> categories;
+	string nounGender;
+	string neuterNoun;
+	string masculineNoun;
+	string feminineNoun;
+	string pluralNoun;
 
 	// constructor
-	Noun(string gender, string noun, vector<string> tags, string english);
+	Noun(string kind, string level, string english, string word, vector<string> categories, string nounGender, string neuterNoun, string masculineNoun, string feminineNoun, string pluralNoun);
 };

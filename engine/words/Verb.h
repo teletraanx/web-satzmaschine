@@ -6,28 +6,18 @@
 using namespace std;
 
 class Verb {
-// verbs.txt: infinitive,ichForm,duForm,thirdSingularForm,wirForm,ihrForm,sieForm
 public:
-    string infinitive;
-    string ichForm;
-    string duForm;
-    string thirdSingularForm;
-    string wirForm;
-    string ihrForm;
-    string sieForm;
-    vector<string> objectTags;
+    string kind;
+    string level;
     string english;
+    string word;
+    vector<string> categories;
+    string singularFirst;
+    string singularSecond;
+    string singularThird;
+    string pluralVerb;
     // constructor
-    Verb(string infinitive, 
-        string ichForm,
-        string duForm,
-        string thirdSingularForm,
-        string wirForm,
-        string ihrForm,
-        string sieForm,
-        vector<string> objectTags,
-        string english
-    );
+    Verb(string kind, string level, string english, string word, vector<string> categories, string singularFirst, string singularSecond, string singularThird, string pluralVerb);
 
     string conjugate(const Pronoun& subject) const;
     
