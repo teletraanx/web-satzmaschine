@@ -8,7 +8,7 @@ REM Go to this script's folder
 cd /d %~dp0
 
 REM Compile C++ engine to WebAssembly
-em++ wasm_bindings.cpp engine/SatzmaschineEngine.cpp engine/generation/Sentence.cpp engine/parsing/Utility.cpp engine/words/Pronoun.cpp engine/words/Verb.cpp engine/words/Noun.cpp engine/words/PersonNoun.cpp engine/words/Adjective.cpp engine/words/Adverb.cpp engine/words/StartNoun.cpp engine/words/NounStartingVerb.cpp ^
+em++ wasm_bindings.cpp engine/utility/parsing.cpp engine/SatzmaschineEngine.cpp engine/generation/Sentence.cpp engine/utility/Utility.cpp engine/words/Pronoun.cpp engine/words/Verb.cpp engine/words/Noun.cpp engine/words/PersonNoun.cpp engine/words/Adjective.cpp engine/words/Adverb.cpp engine/words/StartNoun.cpp engine/words/NounStartingVerb.cpp ^
   -o web/satzmaschine.js ^
   --bind ^
   --preload-file web\data@data ^

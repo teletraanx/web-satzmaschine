@@ -1,5 +1,336 @@
 #include "Sentence.h"
 
+// Present Tense Pronoun + Verb + Noun (including negation)
+GeneratedSentence genPronounVerbNoun(
+    const vector<Pronoun>& pronouns,
+    const vector<Verb>& verbs,
+    const vector<Noun>& nouns
+) {
+    GeneratedSentence result;
+
+    Pronoun pronoun = getRandomItem(pronouns);
+    Verb verb = getRandomItem(verbs);
+
+    bool negated = rollDice(2) == 0;
+
+    vector<Noun> validNouns;
+
+    if (verb.kind == "linking verb") {
+        validNouns =
+            getTaggedNouns({"profession"}, nouns);
+    }
+    else {
+        validNouns =
+            getTaggedNouns(verb.categories, nouns);
+    }
+
+    if (validNouns.empty()) {
+        return {
+            "ERROR: No valid nouns.",
+            {}
+        };
+    }
+
+    Noun noun = getRandomItem(validNouns);
+
+    string nounWord;
+    string determiner;
+
+    if (verb.kind == "linking verb") {
+
+        if (pronoun.number == "plural") {
+            nounWord = noun.pluralNoun;
+
+            if (negated) {
+                determiner = "keine ";
+            }
+        }
+        else if (pronoun.word == "sie") {
+            nounWord = noun.feminineNoun;
+
+            if (negated) {
+                determiner = "keine ";
+            }
+        }
+        else if (pronoun.word == "er") {
+            nounWord = noun.masculineNoun;
+
+            if (negated) {
+                determiner = "kein ";
+            }
+        }
+        else {
+            if (rollDice(2) == 0) {
+                nounWord = noun.masculineNoun;
+
+                if (negated) {
+                    determiner = "kein ";
+                }
+            }
+            else {
+                nounWord = noun.feminineNoun;
+
+                if (negated) {
+                    determiner = "keine ";
+                }
+            }
+        }
+    }
+    else {
+        nounWord = noun.word;
+
+        if (negated) {
+            determiner =
+                getKein(noun.nounGender, "");
+        }
+    }
+
+    result.sentence =
+        capitalizeFirst(pronoun.word)
+        + " "
+        + verb.conjugate(pronoun)
+        + " "
+        + determiner
+        + nounWord
+        + ".";
+
+    result.words.push_back({
+        pronoun.word,
+        pronoun.english
+    });
+
+    result.words.push_back({
+        verb.conjugate(pronoun),
+        verb.english
+    });
+
+    result.words.push_back({
+        nounWord,
+        noun.english
+    });
+
+    return result;
+}
+/*
+GeneratedSentence genPronounVerbNoun(const vector<Pronoun>& pronouns, const vector<Verb>& verbs, const vector<Noun>& nouns) {
+	int roll;
+	int negationRoll = rollDice(2);
+	GeneratedSentence result;
+
+	Pronoun pronoun = getRandomItem(pronouns);
+	Verb verb = getRandomItem(verbs);
+	Noun noun;
+
+	vector<Noun> validNouns;
+	string genderedNoun = "";
+	string determiner;
+
+	if (verb.kind == "linking verb") {
+		validNouns = getTaggedNouns("profession", nouns);
+		noun = getRandomItem(validNouns);
+		// get actual noun word depends on pronoun.number here
+		if (pronoun.number == "singular") {
+			if (pronoun.person == "third") {
+				if (pronoun.word == "er") {
+					// for he, use masculine noun
+					genderedNoun = noun.masculineNoun;
+					
+					if (negationRoll == 0) { // negation
+						determiner = getKein("masculine", "sein");
+					}
+				}
+				else {
+					// for she, use feminine noun
+					genderedNoun = noun.feminineNoun;
+					
+					if (negationRoll == 0) { // negation
+						determiner = getKein("feminine", "sein");
+					}
+				}
+			}
+			else {
+				// I, you (use either masculine or feminine noun)
+				roll = rollDice(2);
+				if (roll == 0) {
+					genderedNoun = noun.masculineNoun;
+					
+					if (negationRoll == 0) { // negation
+						determiner = getKein("masculine", "sein");
+					}
+				}
+				else {
+					genderedNoun = noun.feminineNoun;
+					
+					if (negationRoll == 0) { // negation
+						determiner = getKein("feminine", "sein");
+					}
+				}
+			}
+		}
+		else {
+			// for they or we, use plural noun
+			genderedNoun = noun.pluralNoun;
+			
+			if (negationRoll == 0) { // negation
+				determiner = getKein("plural", "sein");
+			}
+		}
+	}
+	else {
+		validNouns = getTaggedNouns(verb.categories, nouns);
+		noun = getRandomItem(validNouns);
+		// get actual noun word (gender) (for now, is only food and drink, should just be noun.word)
+		genderedNoun = noun.word;
+		// won't need article for now ('I do not have coffee/water/bread'), but later, such as for 'a sandwich', you'll need one
+		if (negationRoll == 0) { // negation
+			determiner = getKein(noun.nounGender, "");
+		}
+	}
+	result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + determiner + genderedNoun;
+	result.words.push_back({ pronoun.word, pronoun.english });
+	result.words.push_back({  verb.word, verb.english });
+	result.words.push_back({ noun.word, noun.english });
+	return result;
+
+	/*
+GeneratedSentence genPronounLVerbPNoun(const Pronoun& pronoun, const Verb& verb, const PersonNoun& personNoun) {
+	GeneratedSentence result;
+
+	// cout << "Pronoun + Linking Verb + PersonNoun" << endl; // DEBUG
+	if (pronoun.number == "plural") {
+		result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.plural + ".";
+		//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << personNoun.plural << "." << endl;
+		result.words.push_back({ personNoun.plural, personNoun.english });
+	}
+	else if (pronoun.word == "sie") { // she/her
+		result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.feminine + ".";
+		//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << personNoun.feminine << "." << endl;
+		result.words.push_back({ personNoun.feminine, personNoun.english });
+	}
+	else {
+		result.sentence = capitalizeFirst(pronoun.word) + " " + verb.conjugate(pronoun) + " " + personNoun.masculine + ".";
+		//cout << capitalizeFirst(pronoun.word) << " " << verb.conjugate(pronoun) << " " << personNoun.masculine << "." << endl;
+		result.words.push_back({ personNoun.masculine, personNoun.english });
+	}
+
+	result.words.push_back({ pronoun.word, pronoun.english });
+	result.words.push_back({ verb.conjugate(pronoun), verb.english });
+	return result;
+}
+	*/
+//}
+
+string getArticle(const string& gender, const string& number) {
+	int roll = rollDice(4); // roll for A, my, your, or The 
+	if (gender == "masculine" && number == "singular") {
+		if (roll == 0) {
+			return "der ";
+		}
+		else if (roll == 1) {
+			return "ein ";
+		}
+		else if (roll == 2) {
+			return "meinen ";
+		}
+		else {
+			return "deinen ";
+		}
+	}
+	else if (gender == "feminine" && number == "singular") {
+		if (roll == 0) {
+			return "die ";
+		}
+		else if (roll == 1) {
+			return "eine ";
+		}
+		else if (roll == 2) {
+			return "meine ";
+		}
+		else {
+			return "deine ";
+		}
+	}
+	else if (number == "plural") {
+		if (roll == 0) {
+			return "deine "; // your
+		}
+		else if (roll == 1) {
+			return "meine "; // my
+		}
+		else { // more chance for just "the" (since there is no plural "A")
+			return "die "; // the
+		}
+	}
+	else {// gender == neuter, number doesn't matter
+		if (roll == 0) {
+			return "mein ";
+		}
+		else if (roll == 1) {
+			return "dein ";
+		}
+		else {
+			return "das ";
+		}
+	}
+	return "ERROR";
+}
+
+string getKein(const string& gender, const string& verb) {
+	// this method also takes "plural" as a gender: plural or fem will always be keine
+	if (gender == "plural" || gender == "feminine") {
+		return "keine";
+	}
+	else if (verb == "sein") {
+		if (gender == "masculine") {
+			return "kein ";
+		}
+		else { // gender == neuter
+			return "kein ";
+		}
+	}
+	else {
+		if (gender == "masculine") {
+			return "keinen ";
+		}
+		else { // gender == neuter
+			return "kein ";
+		}
+	}
+	return "ERROR ";
+}
+
+vector<Noun> getTaggedNouns(
+    const vector<string>& tags,
+    const vector<Noun>& nouns
+) {
+    vector<Noun> taggedNouns;
+
+    for (const Noun& noun : nouns) {
+        bool matches = false;
+
+        for (const string& nounTag : noun.categories) {
+            for (const string& wantedTag : tags) {
+                if (nounTag == wantedTag) {
+                    matches = true;
+                    break;
+                }
+            }
+
+            if (matches) {
+                break;
+            }
+        }
+
+        if (matches) {
+            taggedNouns.push_back(noun);
+        }
+    }
+
+    return taggedNouns;
+}
+
+
+/*
 // Valid noun depends on verb's tags
 vector<Noun> getValidNouns(const vector<Noun>& nouns, const Verb& verb) {
 	vector<Noun> validNouns;
@@ -530,3 +861,4 @@ GeneratedSentence generateYesNoQuestion() {
 GeneratedSentence generateKeinSentence() {
 	//
 }
+*/

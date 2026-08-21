@@ -4,15 +4,23 @@
 #include "../words/Verb.h"
 #include "../words/PersonNoun.h"
 #include "../utility/Utility.h"
-#include "../words/Adjective.h"
-#include "../words/Adverb.h"
-#include "../words/NounStartingVerb.h"
-#include "../words/StartNoun.h"
 #include "../words/GeneratedSentence.h"
 #include <random>
 #include <sstream>
 using namespace std;
 
+template <typename T>
+const T& getRandomItem(const vector<T>& items);
+
+GeneratedSentence genPronounVerbNoun(const vector<Pronoun>& pronouns, const vector<Verb>& verbs, const vector<Noun>& nouns);
+
+string getArticle(const string& gender, const string& number);
+
+string getKein(const string& gender, const string& verb);
+
+vector<Noun> getTaggedNouns(const vector<string>& tags, const vector<Noun>& nouns);
+
+/*
 template <typename T>
 const T& getRandomItem(const vector<T>& items);
 
@@ -36,3 +44,4 @@ GeneratedSentence generateNichtSentence();
 GeneratedSentence generateEinOrKeinSentence();
 GeneratedSentence generateYesNoQuestion();
 //GeneratedSentence generateMeinOrDeinSentence();
+*/

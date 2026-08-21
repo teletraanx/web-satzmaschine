@@ -15,9 +15,31 @@ const T& getRandomItem(const vector<T>& items) {
 	return items[dist(gen)];
 }
 
+template <typename T>
+vector<T> getWordsForLevels(
+    const vector<T>& words,
+    const vector<int>& selectedLevels
+) {
+    vector<T> result;
+
+    for (const T& word : words) {
+        for (int level : selectedLevels) {
+            if (word.level == level) {
+                result.push_back(word);
+                break;
+            }
+        }
+    }
+
+    return result;
+}
+
 string capitalizeFirst(const string& text);
 
+int rollDice(const int& chances);
+/*
 int coinFlip();
 
 int threeSideDice();
+*/
 

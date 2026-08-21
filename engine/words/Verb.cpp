@@ -1,7 +1,7 @@
 #include "Verb.h"
 
 Verb::Verb(string kind,
-    string level,
+    int level,
     string english,
     string word,
     vector<string> categories,

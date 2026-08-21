@@ -2,11 +2,11 @@
 
 #include <vector>
 
-#include "Pronoun.h"
-#include "Verb.h"
-#include "Noun.h"
-#include "Adjective.h"
-#include "Adverb.h"
+#include "../words/Pronoun.h"
+#include "../words/Verb.h"
+#include "../words/Noun.h"
+#include "../words/Adjective.h"
+#include "../words/Adverb.h"
 
 struct WordBank
 {

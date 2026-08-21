@@ -7,60 +7,27 @@
 
 SatzmaschineEngine::SatzmaschineEngine()
 {
-    WordBank words = parseWords("data/words.csv");
+    words = parseWords("data/words.csv");
 }
 
 bool SatzmaschineEngine::loadedSuccessfully() const
 {
-    /*
-    return !levelOnePronouns.empty()
-        && !levelOneVerbs.empty()
-        && !levelOneNouns.empty()
-        && !levelOnePersonNouns.empty()
-        && !levelOneAdjectives.empty()
-        && !levelOneAdverbs.empty()
-        && !levelOneStartNouns.empty()
-        && !levelOneNounStartingVerbs.empty();
-    */
+    return !words.pronouns.empty() 
+        && !words.verbs.empty()
+        && !words.nouns.empty();
 }
+
 
 GeneratedSentence
 SatzmaschineEngine::generateLevelOneSentence() const
 {
-    switch (coinFlip()) {
-    case 0:
-        return generatePronounSimpleSentence(
-            levelOnePronouns,
-            levelOneVerbs,
-            levelOnePersonNouns,
-            levelOneNouns,
-            levelOneAdjectives,
-            levelOneAdverbs
-        );
+    vector<int> levels = {1};
 
-    case 1:
-        return generateNounSimpleSentence(
-            levelOneStartNouns,
-            levelOneNounStartingVerbs,
-            levelOneAdjectives,
-            levelOneAdverbs
-        );
+    vector<Pronoun> pronouns = getWordsForLevels(words.pronouns, levels);
+    vector<Verb> verbs = getWordsForLevels(words.verbs, levels);
+    vector<Noun> nouns = getWordsForLevels(words.nouns, levels);
 
-    default:
-        return {
-            "Unable to generate a Level 1 sentence.",
-            {}
-        };
-    }
-}
-
-GeneratedSentence
-SatzmaschineEngine::generateLevelTwoSentence() const
-{
-    return {
-        "Level 2 sentence generation is coming soon.",
-        {}
-    };
+    return genPronounVerbNoun(pronouns, verbs, nouns);
 }
 
 GeneratedSentence
@@ -83,18 +50,7 @@ SatzmaschineEngine::generateSentence(
         return generateLevelOneSentence();
 
     case 2:
-        return generateLevelTwoSentence();
-
-    /*
-    case 3:
-        return generateLevelThreeSentence();
-
-    case 4:
-        return generateLevelFourSentence();
-
-    case 5:
-        return generateLevelFiveSentence();
-    */
+        //
 
     default:
         return {
